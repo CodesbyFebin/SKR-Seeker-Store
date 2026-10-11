@@ -12,3 +12,5 @@ include(":utilities:gallery")
 include(":utilities:device")
 include(":utilities:backup")
 include(":utilities:vault")
+
+include(":utilities:appmanager", ":utilities:scanner")

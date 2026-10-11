@@ -29,7 +29,7 @@ class EncryptedStore(private val context: Context, private val authenticated: Bo
  }
  @Synchronized fun read(): String {
   if(!file.baseFile.exists()) return ""
-  val bytes = file.readFully(); require(bytes.size in 29..2_000_000)
+  val bytes = file.readFully(); require(bytes.size in 28..2_000_000)
   val cipher=Cipher.getInstance("AES/GCM/NoPadding")
   cipher.init(Cipher.DECRYPT_MODE,key(),GCMParameterSpec(128,bytes.copyOfRange(0,12)))
   return cipher.doFinal(bytes.copyOfRange(12,bytes.size)).toString(Charsets.UTF_8)

@@ -1,8 +1,8 @@
 # Independently installed Seeker utilities
 
-Nine application modules with unique application IDs. No Google login, analytics, Internet permission or shared wallet credentials. Apps share source code, not sandbox data or Keystore keys. `:app` is Seeker Store; its Discover tab links to installed utilities. `catalog.json` contains source metadata, not approved APK releases.
+Eleven application modules with unique application IDs. No Google login, analytics, Internet permission or shared wallet credentials. Apps share source code, not sandbox data or Keystore keys. `:app` is Seeker Store; its Discover tab links to installed utilities. `catalog.json` contains source metadata, not approved APK releases.
 
-Build `./gradlew :utilities:notes:assembleDebug` (replace notes with any module). CI builds and lints all nine modules independently and uploads debug APK artifacts; it does not certify device behavior. No binaries were built in this workspace because the Gradle download failed. Do not describe these apps as fully validated.
+Build `./gradlew :utilities:notes:assembleDebug` (replace notes with any module). CI builds and lints all eleven modules independently and uploads debug APK artifacts; it does not certify device behavior. No binaries were built in this workspace because the Gradle download failed. Do not describe these apps as fully validated.
 
 | Module | Implemented source behavior | Missing / validation |
 |---|---|---|
@@ -22,4 +22,6 @@ All implementations still require Android compilation, permission-denial, provid
 
 ## Requested apps still unimplemented
 
-Native camera and capture proofs; offline maps/navigation and map packages; weather with timestamped cached forecasts; browser; fitness and step sensors; P2P messaging; offline translation and model bundles; QR/document scanning. These need real implementations before a catalog can advertise them. Weather cannot acquire new forecasts offline. P2P proximity chat does not replace an Internet messenger. Streaming video, social networks, ride booking, office collaboration and UPI/SolPay payments need independently scoped services, rights, trust and integration work. No rewards, mined ORE, SKR payments or productivity proof claims were added.
+Native camera and capture proofs; offline maps/navigation and map packages; weather with timestamped cached forecasts; browser; fitness and step sensors; P2P messaging; offline translation and model bundles; document scanning (QR photo decoding is implemented). These need real implementations before a catalog can advertise them. Weather cannot acquire new forecasts offline. P2P proximity chat does not replace an Internet messenger. Streaming video, social networks, ride booking, office collaboration and UPI/SolPay payments need independently scoped services, rights, trust and integration work. No rewards, mined ORE, SKR payments or productivity proof claims were added.
+
+App Manager lists visible launchable apps, searches, launches and opens system app settings. It does not repair another store or bypass Android sandboxing. Scanner decodes QR/barcodes from user-selected photos offline with ZXing; it does not yet provide live camera scanning, OCR or PDF document capture. Both APK builds and device tests are pending. ZXing core is an offline library; no Google Play Services are used.

@@ -72,6 +72,22 @@
       "module": ":utilities:vault",
       "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
       "apk": null
+    },
+    {
+      "id": "appmanager",
+      "name": "Seeker App Manager",
+      "packageName": "com.codesbyfebin.seeker.appmanager",
+      "module": ":utilities:appmanager",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "scanner",
+      "name": "Seeker Scanner",
+      "packageName": "com.codesbyfebin.seeker.scanner",
+      "module": ":utilities:scanner",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
     }
   ]
 }

@@ -73,6 +73,8 @@ class UtilityActivity:ComponentActivity() {
      "gallery"->Gallery()
      "device"->Device()
      "backup"->Backup()
+     "appmanager"->AppManager()
+     "scanner"->Scanner()
     }
     if(status.isNotEmpty())Text(status)
    }
@@ -119,5 +121,25 @@ class UtilityActivity:ComponentActivity() {
   Button(onClick={pick.launch(arrayOf("*/*"))}){Text("Choose source file")};Text(selected?.lastPathSegment?:"No file selected")
   fun process(decrypt:Boolean){val uri=selected?:return;val chars=password.toCharArray();scope.launch{status="Processing…";runCatching{withContext(Dispatchers.IO){val data=contentResolver.openInputStream(uri)?.use{val out=java.io.ByteArrayOutputStream();val buffer=ByteArray(8192);while(true){val count=it.read(buffer);if(count<0)break;require(out.size()+count<=10_000_048);out.write(buffer,0,count)};out.toByteArray()}?:error("Cannot read file");require(data.size<=10_000_048);if(decrypt)PortableBackup.decrypt(data,chars)else PortableBackup.encrypt(data,chars)}}.onSuccess{pending=it;export.launch(if(decrypt)"restored.bin" else "backup.ssb")}.onFailure{status="Failed: invalid file, passphrase or unavailable provider"};chars.fill('\u0000')}}
   Row{Button(enabled=password.length>=12 && selected!=null,onClick={process(false)}){Text("Encrypt")};Spacer(Modifier.width(8.dp));Button(enabled=password.length>=12 && selected!=null,onClick={process(true)}){Text("Restore")}}
+ }
+
+ @Composable private fun AppManager(){
+  var apps by remember { mutableStateOf<List<Pair<String,String>>>(emptyList()) }
+  var query by remember { mutableStateOf("") }
+  LaunchedEffect(Unit){apps=withContext(Dispatchers.IO){packageManager.queryIntentActivities(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER),0).map{it.activityInfo.packageName to it.loadLabel(packageManager).toString()}.distinctBy{it.first}.sortedBy{it.second.lowercase()}}}
+  Text("Visible launchable apps. Android handles permissions, storage and uninstall confirmation.")
+  OutlinedTextField(query,{query=it},label={Text("Search installed apps")})
+  LazyColumn { items(apps.filter{it.second.contains(query,true)}) { app -> Column(Modifier.padding(vertical=8.dp)) {
+   Text(app.second);Text(app.first,style=MaterialTheme.typography.bodySmall)
+   Row { TextButton(onClick={runCatching{packageManager.getLaunchIntentForPackage(app.first)?.let{startActivity(it)}}.onFailure{status="Cannot launch app"}}){Text("Open")}
+    TextButton(onClick={startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.parse("package:${app.first}")))}){Text("Manage")}
+   }
+  } } }
+ }
+ @Composable private fun Scanner(){
+  val scope=rememberCoroutineScope()
+  Text("Offline QR decoding from a selected image. Codes are displayed as text and never opened automatically.")
+  Button(onClick={pick.launch(arrayOf("image/*"))}){Text("Choose QR photo")}
+  Button(enabled=selected!=null,onClick={val uri=selected?:return@Button;scope.launch{status=runCatching{withContext(Dispatchers.IO){val bounds=BitmapFactory.Options().apply{inJustDecodeBounds=true};contentResolver.openInputStream(uri)?.use{BitmapFactory.decodeStream(it,null,bounds)};val opts=BitmapFactory.Options().apply{inSampleSize=1};while(bounds.outWidth/opts.inSampleSize>2048 || bounds.outHeight/opts.inSampleSize>2048)opts.inSampleSize*=2;val bmp=contentResolver.openInputStream(uri)?.use{BitmapFactory.decodeStream(it,null,opts)}?:error("Invalid image");try{val pixels=IntArray(bmp.width*bmp.height);bmp.getPixels(pixels,0,bmp.width,0,0,bmp.width,bmp.height);val source=com.google.zxing.RGBLuminanceSource(bmp.width,bmp.height,pixels);val reader=com.google.zxing.MultiFormatReader();reader.decode(com.google.zxing.BinaryBitmap(com.google.zxing.common.HybridBinarizer(source)),mapOf(com.google.zxing.DecodeHintType.TRY_HARDER to true)).text}finally{bmp.recycle()}}}.getOrElse{"No readable code found"}}}){Text("Decode code")}
  }
 }
