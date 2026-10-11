@@ -15,10 +15,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - run: sdkmanager 'platforms;android-34' 'platforms;android-37.0' 'build-tools;34.0.0' 'build-tools;36.0.0'
       - run: ./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
+      - run: python3 scripts/verify-apk.py app/build/outputs/apk/debug/app-debug.apk --package com.codesbyfebin.skrdstore
       - uses: actions/upload-artifact@v4
         with:
           name: seeker-store-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/*
 
   backend:
     runs-on: ubuntu-latest
@@ -50,10 +51,16 @@ jobs:
           if [ "${{ matrix.app }}" = "browser" ]; then
             cd utilities/browser
             ./gradlew testDebugUnitTest lintDebug assembleDebug
+            for seeker_browser_apk in build/outputs/apk/debug/*.apk; do
+              if [ "$seeker_browser_apk" != "build/outputs/apk/debug/browser-debug.apk" ]; then
+                mv "$seeker_browser_apk" build/outputs/apk/debug/browser-debug.apk
+              fi
+            done
           else
             ./gradlew :utilities:${{ matrix.app }}:testDebugUnitTest :utilities:${{ matrix.app }}:lintDebug :utilities:${{ matrix.app }}:assembleDebug
           fi
+      - run: python3 scripts/verify-apk.py utilities/${{ matrix.app }}/build/outputs/apk/debug/${{ matrix.app }}-debug.apk --package com.codesbyfebin.seeker.${{ matrix.app }}
       - uses: actions/upload-artifact@v4
         with:
           name: seeker-${{ matrix.app }}-debug
-          path: utilities/${{ matrix.app }}/build/outputs/apk/debug/*.apk
+          path: utilities/${{ matrix.app }}/build/outputs/apk/debug/*

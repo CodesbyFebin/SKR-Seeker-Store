@@ -1,4 +1,4 @@
-plugins { id("com.android.application") version "9.1.1"; id("org.jetbrains.kotlin.plugin.compose") version "2.2.10" }
+plugins { id("com.android.application") version "9.1.1"; id("org.jetbrains.kotlin.android") version "2.4.21" apply false; id("org.jetbrains.kotlin.plugin.compose") version "2.4.21" }
 android {
  namespace="com.codesbyfebin.seekerutility"
  compileSdk { version = release(37) { minorApiLevel = 0 } }
