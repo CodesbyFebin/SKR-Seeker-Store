@@ -88,6 +88,62 @@
       "module": ":utilities:scanner",
       "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
       "apk": null
+    },
+    {
+      "id": "weather",
+      "name": "Seeker Weather",
+      "packageName": "com.codesbyfebin.seeker.weather",
+      "module": ":utilities:weather",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "camera",
+      "name": "Seeker Camera",
+      "packageName": "com.codesbyfebin.seeker.camera",
+      "module": ":utilities:camera",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "fitness",
+      "name": "Seeker Steps",
+      "packageName": "com.codesbyfebin.seeker.fitness",
+      "module": ":utilities:fitness",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "messaging",
+      "name": "Seeker Nearby Chat",
+      "packageName": "com.codesbyfebin.seeker.messaging",
+      "module": ":utilities:messaging",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "translation",
+      "name": "Seeker Translate",
+      "packageName": "com.codesbyfebin.seeker.translation",
+      "module": ":utilities:translation",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "maps",
+      "name": "Seeker Maps",
+      "packageName": "com.codesbyfebin.seeker.maps",
+      "module": ":utilities:maps",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "browser",
+      "name": "Seeker Browser",
+      "packageName": "com.codesbyfebin.seeker.browser",
+      "module": ":utilities:browser",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
     }
   ]
 }

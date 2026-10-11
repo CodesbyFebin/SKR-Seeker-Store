@@ -1,27 +1,42 @@
-# Independently installed Seeker utilities
+# Seeker utility suite
 
-Eleven application modules with unique application IDs. No Google login, analytics, Internet permission or shared wallet credentials. Apps share source code, not sandbox data or Keystore keys. `:app` is Seeker Store; its Discover tab links to installed utilities. `catalog.json` contains source metadata, not approved APK releases.
+18 separate Android application IDs; no shared sandbox data or wallet credentials. `:app` is the store, linking to installed utilities in Discover. All are Kotlin/Compose, min API 26, target 34, JDK 17. No analytics or Google login. Internet permissions exist only where the feature needs a network. No Android WebView: Browser embeds the Mozilla Gecko engine.
 
-Build `./gradlew :utilities:notes:assembleDebug` (replace notes with any module). CI builds and lints all eleven modules independently and uploads debug APK artifacts; it does not certify device behavior. No binaries were built in this workspace because the Gradle download failed. Do not describe these apps as fully validated.
+## What is implemented
 
-| Module | Implemented source behavior | Missing / validation |
+| Module | Working source paths | Important limits |
 |---|---|---|
-| notes | Private editable journal, encrypted save/load | Multi-note organization; device validation |
-| tasks | Add, complete, delete, encrypted persistence | Notifications; device validation |
-| calculator | Parentheses, unary signs, arithmetic precedence, zero-division rejection | Build/device validation |
-| files | SAF folder listing, provider open, confirmed delete | Rename, move, APK repair; device validation |
-| music | Local selected audio playback/pause | Playlists, background playback; device validation |
-| gallery | Selected local photo, downsampled preview | Albums/editing; device validation |
-| device | Actual model, ABI, battery capacity, RAM/free-storage reads | Per-app battery attribution, CPU thermals |
-| backup | One-file encrypted portable export/restore, 10 MB limit | Full-device backup and key export are unsupported |
-| vault | Device-credential-gated encrypted records | Autofill, audited password manager, recovery |
+| notes | Edit and encrypted save/load journal | Single document; no multi-note folders |
+| vault | Device-credential-gated encrypted records | Not audited; no autofill, recovery or Seed Vault integration |
+| calculator | Arithmetic parser with precedence/unary/parentheses | No scientific functions |
+| files | SAF folder listing, open, confirmed delete | Granted folder only; no silent deletion or cross-app repair |
+| music | Selected local audio play/pause | Foreground only, no playlists |
+| gallery | Local image selection/downsampled preview | No albums/editor |
+| tasks | Add, complete, delete; encrypted persistence | No notifications or on-chain work claims |
+| backup | One-file passphrase-encrypted export/restore | 10 MB limit; no system/Keystore/seed export |
+| device | Actual device/ABI/battery/RAM/storage reads | No per-app battery or CPU thermal attribution |
+| appmanager | Visible installed launcher apps, search/open/system settings | No repair of another store or broad package inventory |
+| scanner | Offline photo QR/barcode decode | No live camera scanning, OCR or document PDF capture |
+| camera | Native CameraX preview, gallery capture, actual file SHA-256 | No on-chain proof or authenticity guarantee |
+| weather | Open-Meteo coordinates lookup, encrypted timestamped cache | Refresh needs Internet; cached values can be stale |
+| fitness | Actual step-counter foreground sessions | Sensor/permission needed; no background tracking, rewards or medical inference |
+| messaging | Manual same-LAN host/connect, passphrase-AES-GCM messages | No phone number/cloud; not BLE/Wi-Fi Direct discovery; foreground, unreviewed protocol |
+| translation | Imported checksum-pinned Qwen, real JNI offline translation | ARM64 model required separately; accuracy and phone inference unverified |
+| maps | Download small OSM road region; encrypted cache, native canvas, Dijkstra cached path | Approximate walking path only; no GPS guidance/road access/turn restrictions or safe navigation guarantee |
+| browser | Mozilla GeckoView private browsing, HTTPS address entry, back/forward/reload | No download manager, bookmarks, permission prompts or audited tracker guarantee |
 
-Storage uses app-scoped Android Keystore AES-GCM and atomic ciphertext writes. Vault requires a secure lock screen; keys require recent authentication (30 seconds). No guaranteed TEE/StrongBox, Seed Vault or remote attestation is claimed. On background vault UI locks. FLAG_SECURE applies to every utility. Portable backups use PBKDF2-HMAC-SHA256 (210,000 iterations), random salt/IV, authenticated AES-GCM; minimum 12-character passphrase. No Keystore or wallet key can be exported. Sensitive data is not sent to a network. Backups are user-selected file exports; restoring a vault ciphertext on another phone does not restore its Keystore key.
+## Verification and delivery
 
-All implementations still require Android compilation, permission-denial, provider-failure, process-restart, rotation and device-security tests. Vault is not an audited replacement for a mature password manager.
+First-wave commit `95dff53` passed store build, backend job and nine utility build/lint/test jobs. It predates scanner/appmanager and later utility additions. Current complete suite must pass its own CI; success on an earlier commit does not qualify later changes. No phone/emulator validation was performed. Catalog statuses stay SOURCE_IMPLEMENTED_BUILD_PENDING until exact current binaries qualify. No download URLs, APK digests or signer identities are fabricated. GitHub Actions builds every utility and uploads APK artifacts when successful. Build one with `./gradlew :utilities:notes:testDebugUnitTest :utilities:notes:lintDebug :utilities:notes:assembleDebug`.
 
-## Requested apps still unimplemented
+Store installation still needs reviewed hosted APK metadata and a stable owner-controlled signing identity. The Worker/root-page source is present; existing live Worker update needs owner credentials. Devnet endorsements need an owner-reviewed recipient; Genesis/TEEPIN/Guardian/SKR weights remain explicit mock signals. No utility reward, mined ORE or SKR payment implementation was added.
 
-Native camera and capture proofs; offline maps/navigation and map packages; weather with timestamped cached forecasts; browser; fitness and step sensors; P2P messaging; offline translation and model bundles; document scanning (QR photo decoding is implemented). These need real implementations before a catalog can advertise them. Weather cannot acquire new forecasts offline. P2P proximity chat does not replace an Internet messenger. Streaming video, social networks, ride booking, office collaboration and UPI/SolPay payments need independently scoped services, rights, trust and integration work. No rewards, mined ORE, SKR payments or productivity proof claims were added.
+## Security and dependencies
 
-App Manager lists visible launchable apps, searches, launches and opens system app settings. It does not repair another store or bypass Android sandboxing. Scanner decodes QR/barcodes from user-selected photos offline with ZXing; it does not yet provide live camera scanning, OCR or PDF document capture. Both APK builds and device tests are pending. ZXing core is an offline library; no Google Play Services are used.
+Notes/tasks/vault/cache use app-scoped Android Keystore AES-GCM and atomic ciphertext writes. Vault requires a secure screen lock and recent authentication (30 seconds), locking UI on background. No guaranteed TEE/StrongBox, Seed Vault or attestation claim. FLAG_SECURE applies throughout. Portable backup uses PBKDF2-HMAC-SHA256 (210,000 iterations), random salt/IV and authenticated AES-GCM; minimum 12-character passphrase. Lost passphrases cannot be recovered. Device keys and wallet seeds are never exported. Selected media are user-owned files; capture saves ordinary photos to the gallery.
+
+Nearby chat uses that portable encryption with per-message salts/IVs. It is experimental, not an audited secure messenger; no identity/SAS/replay protocol or persistent history. Use a trusted LAN and an in-person strong shared passphrase, not wallet credentials. Browser's private mode does not make you anonymous or prevent website tracking. Qwen inference has no cloud calls. Imported model is the official Qwen2.5 1.5B Q4_K_M GGUF with SHA-256 6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e.
+
+Browser pins Mozilla GeckoView 157.0.20261005135250 from Mozilla Maven; SDK licenses/updates matter independently of our Kotlin source (Gecko MPL-2.0). QR decoding uses ZXing core 3.5.3 (Apache-2.0). CameraX is Apache-2.0. No Google Play Services requirement. Map data: © OpenStreetMap contributors, ODbL; https://www.openstreetmap.org/copyright. Overpass endpoint is community-operated, not unlimited; only explicit small-region downloads. Weather: Open-Meteo attribution/CC BY 4.0; free API terms are non-commercial and rate-limited: https://open-meteo.com/en/terms. Neither weather nor maps silently acquire new data while offline.
+
+Consumer-service alternatives (social networks, DRM streaming, ride booking, UPI/SolPay and collaborative office services) are not part of these 18 utility implementations. They require separate complete products, integrations and operating services; none is advertised as delivered.

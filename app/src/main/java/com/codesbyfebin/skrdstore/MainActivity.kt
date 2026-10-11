@@ -148,7 +148,7 @@ class MainActivity: ComponentActivity() {
       if(visible.isEmpty()) item {Text("No apps match this view.",Modifier.padding(20.dp))}
       if(!depin && libraryFilter=="All") {
        item { Text("Seeker utilities · build validation pending",Modifier.padding(20.dp),fontWeight=FontWeight.Bold) }
-       items(listOf("notes" to "Notes", "tasks" to "Tasks", "calculator" to "Calculator", "files" to "Files", "music" to "Music", "gallery" to "Gallery", "device" to "Device Monitor", "backup" to "Backup", "vault" to "Vault", "appmanager" to "App Manager", "scanner" to "Scanner").filter { search.isBlank() || it.second.contains(search,true) }) { utility ->
+       items(listOf("notes" to "Notes", "tasks" to "Tasks", "calculator" to "Calculator", "files" to "Files", "music" to "Music", "gallery" to "Gallery", "device" to "Device Monitor", "backup" to "Backup", "vault" to "Vault", "appmanager" to "App Manager", "scanner" to "Scanner", "weather" to "Weather", "camera" to "Camera", "fitness" to "Steps", "messaging" to "Nearby Chat", "translation" to "Translate", "maps" to "Maps", "browser" to "Browser").filter { search.isBlank() || it.second.contains(search,true) }) { utility ->
         Card(Modifier.fillMaxWidth().padding(horizontal=20.dp,vertical=4.dp)) { Column(Modifier.padding(16.dp)) {
          Text("Seeker ${utility.second}",fontWeight=FontWeight.Bold)
          Text("Independent Android utility · source implemented · APK validation pending",fontSize=12.sp)

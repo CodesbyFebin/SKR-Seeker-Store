@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [notes, tasks, calculator, files, music, gallery, device, backup, vault, appmanager, scanner]
+        app: [notes, tasks, calculator, files, music, gallery, device, backup, vault, appmanager, scanner, weather, camera, fitness, messaging, translation, maps, browser]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
