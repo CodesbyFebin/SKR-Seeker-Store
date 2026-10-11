@@ -40,3 +40,5 @@ Nearby chat uses that portable encryption with per-message salts/IVs. It is expe
 Browser pins Mozilla GeckoView 157.0.20261005135250 from Mozilla Maven; SDK licenses/updates matter independently of our Kotlin source (Gecko MPL-2.0). QR decoding uses ZXing core 3.5.3 (Apache-2.0). CameraX is Apache-2.0. No Google Play Services requirement. Map data: © OpenStreetMap contributors, ODbL; https://www.openstreetmap.org/copyright. Overpass endpoint is community-operated, not unlimited; only explicit small-region downloads. Weather: Open-Meteo attribution/CC BY 4.0; free API terms are non-commercial and rate-limited: https://open-meteo.com/en/terms. Neither weather nor maps silently acquire new data while offline.
 
 Consumer-service alternatives (social networks, DRM streaming, ride booking, UPI/SolPay and collaborative office services) are not part of these 18 utility implementations. They require separate complete products, integrations and operating services; none is advertised as delivered.
+
+Browser compile SDK is 36 for the current Gecko/media dependencies; target SDK remains 34. The other apps compile/target 34.

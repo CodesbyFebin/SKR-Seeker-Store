@@ -22,7 +22,7 @@ class TranslationActivity:ComponentActivity(){
  Text("Seeker Translate",style=MaterialTheme.typography.headlineMedium);Text("Local Qwen translation · CPU only · No Internet permission. Import the official Qwen2.5 1.5B Q4_K_M GGUF separately. Translation may be inaccurate; verify the meaning.")
  Button(enabled=!busy,onClick={import.launch(arrayOf("application/octet-stream","*/*"))}){Text("Import verified model")};Text(status)
  OutlinedTextField(language,{language=it.take(80)},label={Text("Target language")});OutlinedTextField(source,{source=it.take(1000)},label={Text("Text to translate")},modifier=Modifier.fillMaxWidth())
- Button(enabled=ready && !busy && source.isNotBlank() && language.isNotBlank(),onClick={scope.launch{busy=true;runCatching{agent.translate(source,language)}.onSuccess{result=it;status="Offline inference complete"}.onFailure{status="Local inference failed"};busy=false}}){Text(if(busy)"Processing…"else "Translate offline")};Text(result)
+ Button(enabled=ready && !busy && source.isNotBlank() && language.isNotBlank(),onClick={scope.launch{busy=true;runCatching{agent.translate(source,language)}.onSuccess{result=it;status="Offline inference complete"}.onFailure{status="Local inference failed"};busy=false}}){Text(if(busy)"Processing…" else "Translate offline")};Text(result)
  }}}}
  }
 }

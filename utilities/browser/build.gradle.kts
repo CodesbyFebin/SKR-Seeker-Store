@@ -1,7 +1,7 @@
 plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
 android {
  namespace = "com.codesbyfebin.seekerutility"
- compileSdk = 34
+ compileSdk = 36
  defaultConfig {
   applicationId = "com.codesbyfebin.seeker.browser"; minSdk = 26; targetSdk = 34
   versionCode = 1; versionName = "0.1.0"
