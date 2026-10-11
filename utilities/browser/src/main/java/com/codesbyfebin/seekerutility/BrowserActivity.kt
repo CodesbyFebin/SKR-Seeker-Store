@@ -27,7 +27,7 @@ class BrowserActivity:ComponentActivity(){
  OutlinedTextField(address,{address=it.take(4096)},label={Text("HTTPS address")},singleLine=true,modifier=Modifier.fillMaxWidth())
  Row{Button(onClick={runCatching{val uri=android.net.Uri.parse(address);require(uri.scheme=="https" && !uri.host.isNullOrBlank() && uri.userInfo==null);session.loadUri(address)}.onFailure{status="Enter a valid HTTPS URL"}}){Text("Open")};TextButton(onClick={session.goBack()}){Text("Back")};TextButton(onClick={session.goForward()}){Text("Forward")};TextButton(onClick={session.reload()}){Text("Reload")}}
  Text(status,style=MaterialTheme.typography.bodySmall)
- AndroidView(factory={GeckoView(it).apply{setSession(session)}},modifier=Modifier.weight(1f))
+ AndroidView(factory={GeckoView(it).apply{setSession(this@BrowserActivity.session)}},modifier=Modifier.weight(1f))
  }}}}
  }
  override fun onDestroy(){session.close();super.onDestroy()}
