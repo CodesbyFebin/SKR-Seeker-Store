@@ -13,7 +13,7 @@ jobs:
         with:
           packages: platform-tools
       - uses: gradle/actions/setup-gradle@v4
-      - run: sdkmanager 'platforms;android-34' 'platforms;android-36' 'build-tools;34.0.0'
+      - run: sdkmanager 'platforms;android-34' 'platforms;android-37' 'build-tools;34.0.0' 'build-tools;36.0.0'
       - run: ./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
       - uses: actions/upload-artifact@v4
         with:
@@ -45,8 +45,14 @@ jobs:
         with:
           packages: platform-tools
       - uses: gradle/actions/setup-gradle@v4
-      - run: sdkmanager 'platforms;android-34' 'platforms;android-36' 'build-tools;34.0.0'
-      - run: ./gradlew :utilities:${{ matrix.app }}:testDebugUnitTest :utilities:${{ matrix.app }}:lintDebug :utilities:${{ matrix.app }}:assembleDebug
+      - run: sdkmanager 'platforms;android-34' 'platforms;android-37' 'build-tools;34.0.0' 'build-tools;36.0.0'
+      - run: |
+          if [ "${{ matrix.app }}" = "browser" ]; then
+            cd utilities/browser
+            ./gradlew testDebugUnitTest lintDebug assembleDebug
+          else
+            ./gradlew :utilities:${{ matrix.app }}:testDebugUnitTest :utilities:${{ matrix.app }}:lintDebug :utilities:${{ matrix.app }}:assembleDebug
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: seeker-${{ matrix.app }}-debug

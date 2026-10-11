@@ -29,12 +29,13 @@ class CatalogSource(context: Context) {
   val out=mutableMapOf<String,ApkRelease>()
   for(i in 0 until apps.length()) {
    val item=apps.getJSONObject(i); val id=item.getString("id")
-   if(Catalog.apps.none {it.id==id}) continue
+   if(Catalog.apps.none {it.id==id} && id !in UtilityCatalog.ids) continue
    val variants=item.optJSONArray("variants")
    val options=if(variants!=null) (0 until variants.length()).map {variants.getJSONObject(it)} else listOfNotNull(item.optJSONObject("apk"))
    require(options.size<=20)
    val apk=options.sortedBy { ApkArchitecture.rank(it.optString("assetName","release.apk"),android.os.Build.SUPPORTED_ABIS.toList()) }.firstOrNull { ApkArchitecture.rank(it.optString("assetName","release.apk"),android.os.Build.SUPPORTED_ABIS.toList())!=Int.MAX_VALUE } ?: continue
    val r=ApkRelease(id,apk.getString("packageName"),apk.getLong("versionCode"),apk.getString("url"),apk.getString("sha256").lowercase(),apk.getString("signerSha256").lowercase(),apk.optString("assetName","release.apk"),item.optString("versionName").take(80),item.optString("sourceRepo"),item.optString("changelog").take(3000))
+   if(id in UtilityCatalog.ids) require(r.packageName=="com.codesbyfebin.seeker.$id") { "Utility package identity mismatch" }
    require(r.assetName.endsWith(".apk",true))
    require(r.sourceRepo.isEmpty() || r.sourceRepo.matches(Regex("https://github.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+")))
    require(r.packageName.matches(Regex("[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)+")) && r.versionCode > 0)

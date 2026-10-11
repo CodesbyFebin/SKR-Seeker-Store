@@ -141,7 +141,7 @@
       "id": "browser",
       "name": "Seeker Browser",
       "packageName": "com.codesbyfebin.seeker.browser",
-      "module": ":utilities:browser",
+      "module": "standalone:utilities/browser",
       "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
       "apk": null
     }

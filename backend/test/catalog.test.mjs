@@ -16,3 +16,5 @@ test('variants preserve provenance and require consistent package identity',()=>
 test('source links cannot be executable URLs',()=>{assert.throws(()=>validateCatalog({schema:'skr-dstore-catalog/v1',apps:[{id:'edgeore',sourceRepo:'javascript:alert(1)'}]}));});
 
 test('Seeker Store root supports HTML GET and empty HEAD',async()=>{const r=await worker.fetch(req('/'),{});assert.equal(r.status,200);assert.match(r.headers.get('content-type'),/text\/html/);const html=await r.text();assert.ok(html.includes('Seeker Store'));assert.ok(html.includes('EdgeORE'));assert.equal(await (await worker.fetch(req('/','HEAD'),{})).text(),'');});
+
+test('utility releases require the exact independently installed package',()=>{const r={...release,packageName:'com.codesbyfebin.seeker.notes'};const c=validateCatalog({schema:'skr-dstore-catalog/v1',apps:[{id:'notes',apk:r}]});assert.equal(c.apps[0].name,'Seeker Notes');assert.throws(()=>validateCatalog({schema:'skr-dstore-catalog/v1',apps:[{id:'notes',apk:release}]}));});

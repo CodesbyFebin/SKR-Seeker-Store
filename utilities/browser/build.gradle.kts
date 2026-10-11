@@ -1,29 +1,14 @@
-plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
+plugins { id("com.android.application") version "9.1.1"; id("org.jetbrains.kotlin.plugin.compose") version "2.2.10" }
 android {
- namespace = "com.codesbyfebin.seekerutility"
- compileSdk = 36
- defaultConfig {
-  applicationId = "com.codesbyfebin.seeker.browser"; minSdk = 26; targetSdk = 34
-  versionCode = 1; versionName = "0.1.0"
-  buildConfigField("String", "MODE", "\"browser\"")
-  buildConfigField("String", "TITLE", "\"Seeker Browser\"")
- }
-
-
- buildFeatures { compose = true; buildConfig = true }
- composeOptions { kotlinCompilerExtensionVersion = "1.5.14" }
- compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
- kotlinOptions { jvmTarget = "17" }
+ namespace="com.codesbyfebin.seekerutility"
+ compileSdk=37
+ defaultConfig { applicationId="com.codesbyfebin.seeker.browser"; minSdk=26; targetSdk=34; versionCode=1; versionName="0.1.0"; ndk { abiFilters += "arm64-v8a" } }
+ buildFeatures { compose=true }
+ compileOptions { sourceCompatibility=JavaVersion.VERSION_17; targetCompatibility=JavaVersion.VERSION_17 }
 }
 dependencies {
- implementation("org.mozilla.geckoview:geckoview:157.0.20261005135250")
-
-
  implementation(platform("androidx.compose:compose-bom:2024.06.00"))
  implementation("androidx.activity:activity-compose:1.9.1")
  implementation("androidx.compose.material3:material3")
- implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
- implementation("androidx.documentfile:documentfile:1.0.1")
- implementation("com.google.zxing:core:3.5.3")
- testImplementation("junit:junit:4.13.2")
+ implementation("org.mozilla.geckoview:geckoview:157.0.20261005135250")
 }

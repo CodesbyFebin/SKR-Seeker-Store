@@ -1,5 +1,6 @@
 import { seedApps } from './seed.js';
-const known = new Map(seedApps.map(a => [a.id, a]));
+import { utilityApps } from './utilities.js';
+const known = new Map([...seedApps,...utilityApps].map(a => [a.id, a]));
 export function validateCatalog(input) {
   if (!input || input.schema !== 'skr-dstore-catalog/v1' || !Array.isArray(input.apps) || input.apps.length > 100) throw new Error('Invalid catalog envelope');
   const seen = new Set();
@@ -10,6 +11,7 @@ export function validateCatalog(input) {
     let apk = null;
     if (a.apk != null) {
       const r = a.apk;
+      if(utilityApps.some(app=>app.id===a.id) && r.packageName!==`com.codesbyfebin.seeker.${a.id}`) throw new Error('Utility package identity mismatch');
       const url = new URL(r.url);
       if (url.protocol !== 'https:' || url.username || url.password || url.hash || !url.hostname) throw new Error('APK URL must be HTTPS');
       if (!/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$/.test(r.packageName) || !Number.isSafeInteger(r.versionCode) || r.versionCode <= 0) throw new Error('Invalid APK identity');

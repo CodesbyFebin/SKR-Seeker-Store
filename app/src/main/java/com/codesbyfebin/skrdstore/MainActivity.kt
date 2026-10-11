@@ -146,12 +146,19 @@ class MainActivity: ComponentActivity() {
        when(libraryFilter) {"Installed" -> action=="Open" || action=="Update"; "Updates" -> action=="Update"; "Favorites" -> app.id in favorites; else -> true}
       }.let { if(sortName) it.sortedWith(compareByDescending<DApp> {depin && it.id=="edgeore"}.thenBy {it.name}) else it }
       if(visible.isEmpty()) item {Text("No apps match this view.",Modifier.padding(20.dp))}
-      if(!depin && libraryFilter=="All") {
+      if(!depin) {
        item { Text("Seeker utilities · build validation pending",Modifier.padding(20.dp),fontWeight=FontWeight.Bold) }
-       items(listOf("notes" to "Notes", "tasks" to "Tasks", "calculator" to "Calculator", "files" to "Files", "music" to "Music", "gallery" to "Gallery", "device" to "Device Monitor", "backup" to "Backup", "vault" to "Vault", "appmanager" to "App Manager", "scanner" to "Scanner", "weather" to "Weather", "camera" to "Camera", "fitness" to "Steps", "messaging" to "Nearby Chat", "translation" to "Translate", "maps" to "Maps", "browser" to "Browser").filter { search.isBlank() || it.second.contains(search,true) }) { utility ->
+       items(UtilityCatalog.apps.filter { utility ->
+        val action=releases[utility.first]?.let{installer.action(it)} ?: "APK metadata not supplied"
+        (search.isBlank() || utility.second.contains(search,true)) && when(libraryFilter){"Installed"->action=="Open" || action=="Update";"Updates"->action=="Update";"Favorites"->utility.first in favorites;else->true}
+       }.let{if(sortName)it.sortedBy{entry->entry.second}else it}) { utility ->
         Card(Modifier.fillMaxWidth().padding(horizontal=20.dp,vertical=4.dp)) { Column(Modifier.padding(16.dp)) {
          Text("Seeker ${utility.second}",fontWeight=FontWeight.Bold)
          Text("Independent Android utility · source implemented · APK validation pending",fontSize=12.sp)
+         TextButton(onClick={history.favorite(utility.first);favorites=history.favorites()}){Text(if(utility.first in favorites) "★ Saved" else "☆ Save app")}
+         val release=releases[utility.first]
+         val action=remember(release,installedTick) {release?.let {installer.action(it)} ?: "APK metadata not supplied"}
+         OutlinedButton(enabled=release!=null && !busy && action!="Signer mismatch",onClick={if(release!=null){if(action=="Open")runCatching{installer.open(release)}.onFailure{status="Cannot open utility"}else installReview=release}}){Text(action)}
          TextButton(onClick={val launch=packageManager.getLaunchIntentForPackage("com.codesbyfebin.seeker.${utility.first}");if(launch!=null) startActivity(launch) else status="Install a validated utility APK first. Publisher hashes and signing pins are not yet configured."}) {Text("Open installed app")}
         } }
        }

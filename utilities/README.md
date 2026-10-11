@@ -41,4 +41,4 @@ Browser pins Mozilla GeckoView 157.0.20261005135250 from Mozilla Maven; SDK lice
 
 Consumer-service alternatives (social networks, DRM streaming, ride booking, UPI/SolPay and collaborative office services) are not part of these 18 utility implementations. They require separate complete products, integrations and operating services; none is advertised as delivered.
 
-Browser compile SDK is 36 for the current Gecko/media dependencies; target SDK remains 34. The other apps compile/target 34.
+Browser is an independent Gradle project (utilities/browser/gradlew), using AGP 9.1.1, built-in Kotlin 2.2.10, Gradle 9.3.1 and compile SDK 37 for current Gecko/media dependencies. JDK 17, min 26 and target SDK 34 remain. The store and other utilities retain their pinned older toolchain and compile/target 34.
