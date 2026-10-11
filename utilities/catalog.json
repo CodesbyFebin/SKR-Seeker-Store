@@ -6,144 +6,162 @@
       "name": "Seeker Notes",
       "packageName": "com.codesbyfebin.seeker.notes",
       "module": ":utilities:notes",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "tasks",
       "name": "Seeker Tasks",
       "packageName": "com.codesbyfebin.seeker.tasks",
       "module": ":utilities:tasks",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "calculator",
       "name": "Seeker Calculator",
       "packageName": "com.codesbyfebin.seeker.calculator",
       "module": ":utilities:calculator",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "files",
       "name": "Seeker Files",
       "packageName": "com.codesbyfebin.seeker.files",
       "module": ":utilities:files",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "music",
       "name": "Seeker Music",
       "packageName": "com.codesbyfebin.seeker.music",
       "module": ":utilities:music",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "gallery",
       "name": "Seeker Gallery",
       "packageName": "com.codesbyfebin.seeker.gallery",
       "module": ":utilities:gallery",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "device",
       "name": "Seeker Device Monitor",
       "packageName": "com.codesbyfebin.seeker.device",
       "module": ":utilities:device",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "backup",
       "name": "Seeker Backup",
       "packageName": "com.codesbyfebin.seeker.backup",
       "module": ":utilities:backup",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "vault",
       "name": "Seeker Vault",
       "packageName": "com.codesbyfebin.seeker.vault",
       "module": ":utilities:vault",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "appmanager",
       "name": "Seeker App Manager",
       "packageName": "com.codesbyfebin.seeker.appmanager",
       "module": ":utilities:appmanager",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "scanner",
       "name": "Seeker Scanner",
       "packageName": "com.codesbyfebin.seeker.scanner",
       "module": ":utilities:scanner",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "weather",
       "name": "Seeker Weather",
       "packageName": "com.codesbyfebin.seeker.weather",
       "module": ":utilities:weather",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "camera",
       "name": "Seeker Camera",
       "packageName": "com.codesbyfebin.seeker.camera",
       "module": ":utilities:camera",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "fitness",
       "name": "Seeker Steps",
       "packageName": "com.codesbyfebin.seeker.fitness",
       "module": ":utilities:fitness",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "messaging",
       "name": "Seeker Nearby Chat",
       "packageName": "com.codesbyfebin.seeker.messaging",
       "module": ":utilities:messaging",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "translation",
       "name": "Seeker Translate",
       "packageName": "com.codesbyfebin.seeker.translation",
       "module": ":utilities:translation",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "maps",
       "name": "Seeker Maps",
       "packageName": "com.codesbyfebin.seeker.maps",
       "module": ":utilities:maps",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     },
     {
       "id": "browser",
       "name": "Seeker Browser",
       "packageName": "com.codesbyfebin.seeker.browser",
       "module": "standalone:utilities/browser",
-      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
-      "apk": null
+      "status": "CI_BUILT_DEVICE_NOT_RUN",
+      "apk": null,
+      "qualifiedCommit": "9bdf4a92851fe12f5f297cc2b51fcc8660e0002c"
     }
   ]
 }

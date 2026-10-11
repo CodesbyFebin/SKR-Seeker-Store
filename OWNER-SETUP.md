@@ -8,7 +8,7 @@ No recipient is invented. Provide the public address of an independently reviewe
 
 ## Phone and model
 
-No phone is attached to this workspace. On your own computer, install adb, connect and authorize the ARM64 phone, and run `adb devices -l`. Download the model from the official link in MODEL.md. Then run `python3 scripts/prepare-device.py --serial YOUR_DEVICE_SERIAL --model /path/to/qwen2.5-1.5b-instruct-q4_k_m.gguf`. This checks Android API/ABI and the pinned checksum, installs the APK, stages the model in Downloads and starts the app.
+No phone is attached to this workspace. On your own computer, install adb, connect and authorize the ARM64 phone, and run `adb devices -l`. Download the model from the official link in MODEL.md. Then run `python3 scripts/prepare-device.py --apk /path/to/app-debug.apk --serial YOUR_DEVICE_SERIAL --model /path/to/qwen2.5-1.5b-instruct-q4_k_m.gguf`. This checks Android API/ABI and the pinned checksum, installs the APK, stages the model in Downloads and starts the app.
 
 In Agent, tap Import verified GGUF and select that Downloads file. Wait for checksum verification. Ask a question, then turn on airplane mode and ask again. Measure model load/inference time and record three generated recommendations. Wallet connection/signing must be tested separately after recipient configuration with test SOL. Confirm the exact-message review, rejected signing, confirmed receipt, restart persistence and weight update. Return from a verified APK installation and check Open; cancel another installation and ensure no false success.
 
@@ -17,3 +17,7 @@ The script writes device-setup-report.json with only the checks it executed; imp
 ## Current model evidence
 
 The official GGUF is available and checksum-verified on the build host. Actual JNI inference was rerun and returned EdgeORE, Grass and Helium Mobile with one-line reasons. This is host validation, not on-device import or performance evidence. Model weights are not included in the ZIP.
+
+## Utility build artifacts
+
+Use the current successful GitHub Actions run to download individual utility APKs. Each artifact includes observed package/digest/signer metadata and signature verification. Review these and configure stable owner-controlled release signing before hosting installable releases. Current build evidence is not phone runtime evidence. Browser builds independently in utilities/browser using its own wrapper.

@@ -8,3 +8,5 @@ vendor/
 node_modules/
 .wrangler/
 .env
+
+device-setup-report.json

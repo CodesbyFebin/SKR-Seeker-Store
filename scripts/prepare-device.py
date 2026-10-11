@@ -4,8 +4,9 @@ Model import and wallet approvals remain explicit Android UI actions.
 """
 import argparse,hashlib,subprocess,shutil,json,datetime
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--serial',required=True);p.add_argument('--model',required=True,type=Path);p.add_argument('--adb',default='adb');args=p.parse_args()
-root=Path(__file__).resolve().parents[1];apk=root/'artifacts/skr-dstore-debug.apk'
+p=argparse.ArgumentParser();p.add_argument('--serial',required=True);p.add_argument('--model',required=True,type=Path);p.add_argument('--adb',default='adb');p.add_argument('--apk',required=True,type=Path);args=p.parse_args()
+root=Path(__file__).resolve().parents[1];apk=args.apk.resolve()
+if not apk.is_file():raise SystemExit('Provide the downloaded, reviewed Seeker Store APK with --apk')
 def adb(*words):return subprocess.check_output([args.adb,'-s',args.serial,*words],text=True).strip()
 if adb('get-state')!='device':raise SystemExit('Selected phone is not connected/authorized')
 if int(adb('shell','getprop','ro.build.version.sdk'))<26:raise SystemExit('Android API 26+ required')
