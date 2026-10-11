@@ -1,0 +1,9 @@
+# Seeker Store
+
+Kotlin Android curation-layer MVP with optional verified APK install/update handoff and read-only Cloudflare catalog. Four tabs: Discover, DePIN, Endorsements, Agent. Ranking and identity signals are mocked; MWA, devnet transaction code, SQLCipher, P-256 signing and native offline Qwen are implemented. Consult README and evidence/STATUS.md for actual build versus device test results.
+
+- README.md: product, setup and real-versus-mock table
+- AGENTS.md: development constraints
+- backend/README.md: catalog trust and deployment
+- MODEL.md: pinned Qwen import
+- evidence/STATUS.md: measured evidence

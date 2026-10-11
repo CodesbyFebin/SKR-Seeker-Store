@@ -1,0 +1,10 @@
+local.properties
+.gradle/
+**/build/
+vendor/
+*.gguf
+*.jks
+
+node_modules/
+.wrangler/
+.env

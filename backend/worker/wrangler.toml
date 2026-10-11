@@ -1,0 +1,10 @@
+name = "skr-dstore-catalog"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Seed catalog works without D1. After `wrangler d1 create skr-dstore`, add:
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "skr-dstore"
+# database_id = "UUID_FROM_CLOUDFLARE"

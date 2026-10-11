@@ -1,0 +1,65 @@
+{
+  "schema": "skr-dstore-catalog/v1",
+  "apps": [
+    {
+      "id": "edgeore",
+      "name": "EdgeORE",
+      "category": "DePIN",
+      "apk": null
+    },
+    {
+      "id": "grass",
+      "name": "Grass",
+      "category": "DePIN",
+      "apk": null
+    },
+    {
+      "id": "helium",
+      "name": "Helium Mobile",
+      "category": "DePIN",
+      "apk": null
+    },
+    {
+      "id": "hivemapper",
+      "name": "Hivemapper",
+      "category": "DePIN",
+      "apk": null
+    },
+    {
+      "id": "jupiter",
+      "name": "Jupiter",
+      "category": "DEX",
+      "apk": null
+    },
+    {
+      "id": "phantom",
+      "name": "Phantom",
+      "category": "Wallet",
+      "apk": null
+    },
+    {
+      "id": "backpack",
+      "name": "Backpack",
+      "category": "Wallet",
+      "apk": null
+    },
+    {
+      "id": "kamino",
+      "name": "Kamino",
+      "category": "Lending",
+      "apk": null
+    },
+    {
+      "id": "drift",
+      "name": "Drift",
+      "category": "Perps",
+      "apk": null
+    },
+    {
+      "id": "lootgo",
+      "name": "LootGo",
+      "category": "GameFi",
+      "apk": null
+    }
+  ]
+}

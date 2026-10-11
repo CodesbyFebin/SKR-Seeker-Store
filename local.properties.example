@@ -1,0 +1,10 @@
+# Copy to local.properties; never commit that file.
+# sdk.dir=/absolute/path/to/Android/Sdk
+RPC_URL=https://devnet.helius-rpc.com/?api-key=YOUR_KEY
+# Required: audited, existing 32-byte devnet destination; no default burn address.
+ENDORSEMENT_RECIPIENT=
+# Required for importing Qwen2.5-1.5B-Instruct Q4_K_M; obtain from trusted model release.
+MODEL_SHA256=6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e
+
+# Optional standalone APK catalog; backend deployment and reviewed release metadata required.
+CATALOG_URL=

@@ -1,0 +1,77 @@
+{
+  "schema": "seeker-utilities/v1",
+  "apps": [
+    {
+      "id": "notes",
+      "name": "Seeker Notes",
+      "packageName": "com.codesbyfebin.seeker.notes",
+      "module": ":utilities:notes",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "tasks",
+      "name": "Seeker Tasks",
+      "packageName": "com.codesbyfebin.seeker.tasks",
+      "module": ":utilities:tasks",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "calculator",
+      "name": "Seeker Calculator",
+      "packageName": "com.codesbyfebin.seeker.calculator",
+      "module": ":utilities:calculator",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "files",
+      "name": "Seeker Files",
+      "packageName": "com.codesbyfebin.seeker.files",
+      "module": ":utilities:files",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "music",
+      "name": "Seeker Music",
+      "packageName": "com.codesbyfebin.seeker.music",
+      "module": ":utilities:music",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "gallery",
+      "name": "Seeker Gallery",
+      "packageName": "com.codesbyfebin.seeker.gallery",
+      "module": ":utilities:gallery",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "device",
+      "name": "Seeker Device Monitor",
+      "packageName": "com.codesbyfebin.seeker.device",
+      "module": ":utilities:device",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "backup",
+      "name": "Seeker Backup",
+      "packageName": "com.codesbyfebin.seeker.backup",
+      "module": ":utilities:backup",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    },
+    {
+      "id": "vault",
+      "name": "Seeker Vault",
+      "packageName": "com.codesbyfebin.seeker.vault",
+      "module": ":utilities:vault",
+      "status": "SOURCE_IMPLEMENTED_BUILD_PENDING",
+      "apk": null
+    }
+  ]
+}

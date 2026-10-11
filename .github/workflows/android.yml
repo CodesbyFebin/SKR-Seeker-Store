@@ -1,0 +1,49 @@
+name: Android validation
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+      - run: sdkmanager 'platforms;android-34' 'build-tools;34.0.0'
+      - run: ./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seeker-store-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test backend/test/*.test.mjs
+
+  utilities:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [notes, tasks, calculator, files, music, gallery, device, backup, vault]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+      - run: sdkmanager 'platforms;android-34' 'build-tools;34.0.0'
+      - run: ./gradlew :utilities:${{ matrix.app }}:testDebugUnitTest :utilities:${{ matrix.app }}:lintDebug :utilities:${{ matrix.app }}:assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seeker-${{ matrix.app }}-debug
+          path: utilities/${{ matrix.app }}/build/outputs/apk/debug/*.apk

@@ -1,0 +1,8 @@
+Target: Android API 26, arm64-v8a
+Runtime: llama.cpp b6323
+Source commit: 696fccf354e9dbdfbce135bc40b44c9dcc64dda9
+Compiler: Android NDK 26.3.11579264
+Build: CMake 3.22.1, CPU only, -march=armv8-a, no OpenMP
+JNI: app/src/main/cpp/agent.cpp
+Stripped library SHA-256: 9d4ecabd4d3b1bed2785895d012fd8105be4d31ec08223cd7586066126115419
+Model inference: PASS on Linux x86_64 host using the same JNI function; Android inference NOT_RUN
